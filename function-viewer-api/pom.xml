@@ -19,7 +19,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <scala.version>2.11.8</scala.version>
+        <scala.version>2.11.12</scala.version>
     </properties>
 
     <dependencies>
@@ -72,16 +72,18 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
-            <scope>true</scope>
+            <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
 
         <!-- scala begin -->
-        <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-library</artifactId>
-            <version>${scala.version}</version>
-        </dependency>
+            <!-- duplicated
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-library</artifactId>
+                <version>${scala.version}</version>
+            </dependency>
+            -->
         <!-- scala end -->
 
         <!-- 数据库 begin -->
