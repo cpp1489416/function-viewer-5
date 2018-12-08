@@ -1,4 +1,6 @@
 /target/
+function-viewer-api/target/
+function-viewer-core/target/
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
