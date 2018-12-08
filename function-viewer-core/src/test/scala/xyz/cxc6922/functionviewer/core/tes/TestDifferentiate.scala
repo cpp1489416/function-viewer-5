@@ -12,6 +12,7 @@ object TestDifferentiate {
       ),
       new ConstantNode(33)
     )
+    node.left = new  NegativeNode(new ConstantNode(-1));
     println("origin: " + node.accept(new StringerVisitor))
 
     val differentiateVisitor = new DifferentiateVisitor

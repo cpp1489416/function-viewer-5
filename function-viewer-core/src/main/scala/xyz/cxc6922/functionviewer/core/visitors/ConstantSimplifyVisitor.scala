@@ -158,6 +158,8 @@ class ConstantSimplifyVisitor extends Visitor {
           return left // val / 1 = val
         } else if (right.valueType == ConstantNode.Type.NegativeOne) {
           return genNegativeNode(left) // val / -1 = -val
+        } else { // val / constant = (1/constant) * val
+          return new MultiplyNode(new ConstantNode(1.0 / right.value), left)
         }
       case _ =>
     }

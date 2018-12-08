@@ -1,6 +1,20 @@
 package xyz.cxc6922.functionviewer.core.node
 
-class VariableNode(val name: String) extends Node {
+import scala.beans.BeanProperty
+
+trait UnaryNode extends Node {}
+
+trait BinaryNode extends Node {
+  var left: Node
+
+  var right: Node
+}
+
+trait PlusMinusNode extends BinaryNode {}
+
+trait MultiplyDivideNode extends BinaryNode {}
+
+class VariableNode(val name: String) extends UnaryNode {
   override def accept(visitor: Visitor): Any = {
     visitor.visit(this)
   }
@@ -14,9 +28,9 @@ object ConstantNode {
 
 }
 
-class ConstantNode(val value: Double,
-                   val valueType: ConstantNode.Type.Value = ConstantNode.Type.Common
-                  ) extends Node {
+class ConstantNode(@BeanProperty var value: Double,
+                   @BeanProperty var valueType: ConstantNode.Type.Value = ConstantNode.Type.Common
+                  ) extends UnaryNode {
   def this(valueType: ConstantNode.Type.Value) {
     this(
       valueType match {
@@ -37,37 +51,37 @@ class ConstantNode(val value: Double,
   }
 }
 
-class NegativeNode(var child: Node) extends Node {
+class NegativeNode(@BeanProperty var child: Node) extends UnaryNode {
   override def accept(visitor: Visitor): Any = {
     visitor.visit(this)
   }
 }
 
-class PlusNode(var left: Node, var right: Node) extends Node {
+class CosNode(@BeanProperty var child: Node) extends UnaryNode {
   override def accept(visitor: Visitor): Any = {
     visitor.visit(this)
   }
 }
 
-class MinusNode(var left: Node, var right: Node) extends Node {
+class PlusNode(@BeanProperty var left: Node, @BeanProperty var right: Node) extends PlusMinusNode {
   override def accept(visitor: Visitor): Any = {
     visitor.visit(this)
   }
 }
 
-class MultiplyNode(val left: Node, val right: Node) extends Node {
+class MinusNode(@BeanProperty var left: Node, @BeanProperty var right: Node) extends PlusMinusNode {
   override def accept(visitor: Visitor): Any = {
     visitor.visit(this)
   }
 }
 
-class DivideNode(val left: Node, val right: Node) extends Node {
+class MultiplyNode(@BeanProperty var left: Node, @BeanProperty var right: Node) extends MultiplyDivideNode {
   override def accept(visitor: Visitor): Any = {
     visitor.visit(this)
   }
 }
 
-class CosNode(val inside: Node) extends Node {
+class DivideNode(@BeanProperty var left: Node, @BeanProperty var right: Node) extends MultiplyDivideNode {
   override def accept(visitor: Visitor): Any = {
     visitor.visit(this)
   }

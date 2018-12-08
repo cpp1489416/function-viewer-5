@@ -17,6 +17,7 @@ object TestConstantSimplify {
         new ConstantNode(ConstantNode.Type.One)
       )
     )
+    node.asInstanceOf[PlusNode].right = new ConstantNode(-134321234)
     test(node)
 
     // 1 + -0
@@ -66,6 +67,13 @@ object TestConstantSimplify {
     node = new MinusNode(
       new ConstantNode(ConstantNode.Type.Zero),
       new ConstantNode(ConstantNode.Type.One)
+    )
+    test(node)
+
+    // x / 2
+    node = new DivideNode(
+      new VariableNode("x"),
+      new ConstantNode(2)
     )
     test(node)
 
