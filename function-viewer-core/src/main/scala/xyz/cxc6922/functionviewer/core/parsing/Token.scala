@@ -6,12 +6,21 @@ object Token {
 
   object Type extends Enumeration {
     type Type = Value
-    val End = Value(0)
-    val Number = Value(1)
-    val Identifier = Value(2) // a english identifier
-    val Operator = Value(3)
-    val Bracket = Value(4)
-    val Unknown = Value(5)
+    val End: Token.Type.Value = Value
+    val Number: Token.Type.Value = Value
+    val Identifier: Token.Type.Value = Value // a english identifier
+    val Operator: Token.Type.Value = Value
+    val Bracket: Token.Type.Value = Value
+    val Unknown: Token.Type.Value = Value
+  }
+
+  object SecondType extends Enumeration {
+    type SecondType = Value
+    val None: Token.SecondType.Value = Value
+    val NumberLong: Token.SecondType.Value = Value
+    val NumberDouble: Token.SecondType.Value = Value
+    val BracketLeft: Token.SecondType.Value = Value
+    val BracketRight: Token.SecondType.Value = Value
   }
 
   def fromSource(source: String): Token = {
@@ -30,12 +39,21 @@ object Token {
   }
 
   def genEnd: Token = {
-    new Token("#", Type.End)
+    new Token("(End)", Type.End)
   }
 }
 
-class Token(@BeanProperty val source: String = "",
-            @BeanProperty val sourceType: Token.Type.Value = Token.Type.Unknown,
-            @BeanProperty val lineNumber: Long = -1,
-            @BeanProperty val columnNumber: Long = -1) {
+class Token(@BeanProperty var source: String = "",
+            @BeanProperty var sourceType: Token.Type.Value = Token.Type.Unknown,
+            @BeanProperty var secondType: Token.SecondType.Value = Token.SecondType.None,
+            @BeanProperty var lineNumber: Long = -1,
+            @BeanProperty var columnNumber: Long = -1) extends Cloneable {
+  override def clone(): Token = {
+    new Token(source, sourceType, secondType, lineNumber, columnNumber)
+  }
+
+  override def toString: String = {
+    "<" + source + ", " + sourceType + ", " + secondType + ">\n"
+  }
 }
+

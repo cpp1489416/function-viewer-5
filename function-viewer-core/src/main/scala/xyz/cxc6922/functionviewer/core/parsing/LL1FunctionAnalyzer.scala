@@ -6,10 +6,28 @@ import xyz.cxc6922.functionviewer.core.node._
 
 class LL1FunctionAnalyzer(val source: List[Token]) {
 
-  private val forward: BufferedIterator[Token] = source.iterator.buffered
+  private var forward: BufferedIterator[Token] = source.iterator.buffered
 
   private def lookForward(): Token = {
-    forward.head
+    lookForward(100)
+    lookForward(1)
+  }
+
+  private def lookForward(count: Int): Token = {
+    val (newItr, tmpItr) = forward.duplicate
+    forward = newItr.buffered
+    for (i <- 1 until count - 1) {
+      if (tmpItr.hasNext) {
+        tmpItr.next()
+      } else {
+        return Token.genEnd
+      }
+    }
+    if (tmpItr.hasNext) {
+      tmpItr.next()
+    } else {
+      Token.genEnd
+    }
   }
 
   private def moveNext(): Token = {
@@ -87,6 +105,7 @@ class LL1FunctionAnalyzer(val source: List[Token]) {
       case Token.Type.Number =>
         ans = new ConstantNode(token.source.toDouble)
         moveNext()
+      case Token.Type.End =>
       case _ =>
         throwException(token)
     }
