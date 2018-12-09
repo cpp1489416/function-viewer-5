@@ -1,4 +1,4 @@
-package xyz.cxc6922.functionviewer.core.visitors
+package xyz.cxc6922.functionviewer.core.visitor
 
 import xyz.cxc6922.functionviewer.core.node._
 
@@ -6,7 +6,7 @@ class StringerVisitor extends Visitor {
   var string = ""
 
   override def visit(node: Node): String = {
-    "please implit the node name : " + node.getClass.getName
+    "please implicit the node name : " + node.getClass.getName
   }
 
   override def visit(node: ConstantNode): String = node.valueType match {

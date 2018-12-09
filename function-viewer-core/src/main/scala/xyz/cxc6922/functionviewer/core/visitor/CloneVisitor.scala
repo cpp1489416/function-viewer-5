@@ -1,4 +1,4 @@
-package xyz.cxc6922.functionviewer.core.visitors
+package xyz.cxc6922.functionviewer.core.visitor
 
 import xyz.cxc6922.functionviewer.core.node._
 

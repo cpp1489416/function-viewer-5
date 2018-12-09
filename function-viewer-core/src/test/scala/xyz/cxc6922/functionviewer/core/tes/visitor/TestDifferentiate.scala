@@ -1,7 +1,7 @@
-package xyz.cxc6922.functionviewer.core.tes
+package xyz.cxc6922.functionviewer.core.tes.visitor
 
 import xyz.cxc6922.functionviewer.core.node._
-import xyz.cxc6922.functionviewer.core.visitors.{DifferentiateVisitor, StringerVisitor}
+import xyz.cxc6922.functionviewer.core.visitor.{DifferentiateVisitor, StringerVisitor}
 
 object TestDifferentiate {
   def main(args: Array[String]): Unit = {

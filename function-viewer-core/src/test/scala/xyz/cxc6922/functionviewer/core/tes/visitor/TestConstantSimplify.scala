@@ -1,7 +1,7 @@
-package xyz.cxc6922.functionviewer.core.tes
+package xyz.cxc6922.functionviewer.core.tes.visitor
 
 import xyz.cxc6922.functionviewer.core.node._
-import xyz.cxc6922.functionviewer.core.visitors.{ConstantSimplifyVisitor, DifferentiateVisitor, StringerVisitor}
+import xyz.cxc6922.functionviewer.core.visitor.{ConstantSimplifyVisitor, DifferentiateVisitor, StringerVisitor}
 
 object TestConstantSimplify {
   val stringerVisitor = new StringerVisitor

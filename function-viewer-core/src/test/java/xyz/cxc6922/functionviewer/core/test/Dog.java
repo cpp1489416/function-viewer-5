@@ -2,10 +2,9 @@ package xyz.cxc6922.functionviewer.core.test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import xyz.cxc6922.functionviewer.core.node.ConstantNode;
-import xyz.cxc6922.functionviewer.core.node.ConstantNode$;
 import xyz.cxc6922.functionviewer.core.node.DivideNode;
 import xyz.cxc6922.functionviewer.core.node.Node;
-import xyz.cxc6922.functionviewer.core.visitors.StringerVisitor;
+import xyz.cxc6922.functionviewer.core.visitor.StringerVisitor;
 
 public class Dog {
     private String name = "ddd";
@@ -21,6 +20,7 @@ public class Dog {
                 new ConstantNode(ConstantNode.Type$.MODULE$.Common())
         );
         return d;
+
     }
 
     public static void main(String[] args) throws Exception {

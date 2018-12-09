@@ -6,7 +6,6 @@ trait UnaryNode extends Node {}
 
 trait BinaryNode extends Node {
   var left: Node
-
   var right: Node
 }
 
@@ -23,6 +22,7 @@ class VariableNode(val name: String) extends UnaryNode {
 object ConstantNode {
 
   object Type extends Enumeration {
+    type Type = Value
     val Common, Zero, One, NegativeOne, Infinite = Value
   }
 
