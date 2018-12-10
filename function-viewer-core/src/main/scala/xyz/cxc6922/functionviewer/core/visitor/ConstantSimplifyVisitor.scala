@@ -1,6 +1,6 @@
 package xyz.cxc6922.functionviewer.core.visitor
 
-import xyz.cxc6922.functionviewer.core.node._
+import xyz.cxc6922.functionviewer.core.ast._
 
 // this version cannot check constant infinite
 class ConstantSimplifyVisitor extends Visitor {

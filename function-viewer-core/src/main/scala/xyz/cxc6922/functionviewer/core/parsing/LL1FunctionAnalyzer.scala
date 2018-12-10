@@ -2,7 +2,7 @@ package xyz.cxc6922.functionviewer.core.parsing
 
 import java.util
 
-import xyz.cxc6922.functionviewer.core.node._
+import xyz.cxc6922.functionviewer.core.ast._
 
 class LL1FunctionAnalyzer(val source: List[Token]) {
 

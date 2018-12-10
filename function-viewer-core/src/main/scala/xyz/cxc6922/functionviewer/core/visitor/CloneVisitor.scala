@@ -1,6 +1,6 @@
 package xyz.cxc6922.functionviewer.core.visitor
 
-import xyz.cxc6922.functionviewer.core.node._
+import xyz.cxc6922.functionviewer.core.ast._
 
 class CloneVisitor extends Visitor {
   override def visit(node: Node): Unit = {

@@ -1,7 +1,7 @@
 package xyz.cxc6922.functionviewer.core.tes.visitor
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import xyz.cxc6922.functionviewer.core.node._
+import xyz.cxc6922.functionviewer.core.ast._
 import xyz.cxc6922.functionviewer.core.visitor.StringerVisitor
 
 object TestString {

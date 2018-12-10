@@ -1,6 +1,6 @@
 package xyz.cxc6922.functionviewer.core.tes.visitor
 
-import xyz.cxc6922.functionviewer.core.node._
+import xyz.cxc6922.functionviewer.core.ast._
 import xyz.cxc6922.functionviewer.core.visitor.{ConstantSimplifyVisitor, DifferentiateVisitor, StringerVisitor}
 
 object TestConstantSimplify {

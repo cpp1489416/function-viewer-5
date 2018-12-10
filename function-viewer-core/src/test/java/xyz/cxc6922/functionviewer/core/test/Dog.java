@@ -1,9 +1,9 @@
 package xyz.cxc6922.functionviewer.core.test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import xyz.cxc6922.functionviewer.core.node.ConstantNode;
-import xyz.cxc6922.functionviewer.core.node.DivideNode;
-import xyz.cxc6922.functionviewer.core.node.Node;
+import xyz.cxc6922.functionviewer.core.ast.ConstantNode;
+import xyz.cxc6922.functionviewer.core.ast.DivideNode;
+import xyz.cxc6922.functionviewer.core.ast.Node;
 import xyz.cxc6922.functionviewer.core.visitor.StringerVisitor;
 
 public class Dog {

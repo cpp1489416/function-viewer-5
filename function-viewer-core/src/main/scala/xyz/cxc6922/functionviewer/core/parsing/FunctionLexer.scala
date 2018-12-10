@@ -58,7 +58,7 @@ class FunctionLexer(var source: String) {
   private def dropToken(): Unit = {
     lastIndex = nextIndex
     lastRow = currentRow
-    lastColumn = currentRow
+    lastColumn = currentColumn
   }
 
   private def pushToken(token: Token): Token = {

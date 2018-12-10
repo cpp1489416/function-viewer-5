@@ -53,7 +53,7 @@ class Token(@BeanProperty var source: String = "",
   }
 
   override def toString: String = {
-    "<" + source + ", " + sourceType + ", " + secondType + ">\n"
+    "<" + source + ", " + sourceType + ", " + secondType + ", " + lineNumber + ", " + columnNumber + ">\n"
   }
 }
 

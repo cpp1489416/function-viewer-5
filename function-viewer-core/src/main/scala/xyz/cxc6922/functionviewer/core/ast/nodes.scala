@@ -1,4 +1,4 @@
-package xyz.cxc6922.functionviewer.core.node
+package xyz.cxc6922.functionviewer.core.ast
 
 import scala.beans.BeanProperty
 
