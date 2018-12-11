@@ -2,7 +2,7 @@ package xyz.cxc6922.functionviewer.core.visitor
 
 import xyz.cxc6922.functionviewer.core.ast._
 
-class StringerVisitor extends Visitor {
+class StringerVisitor extends Visitor[String] {
   var string = ""
 
   override def visit(node: Node): String = {

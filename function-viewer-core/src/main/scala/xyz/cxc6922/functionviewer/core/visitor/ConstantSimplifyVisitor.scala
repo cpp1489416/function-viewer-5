@@ -3,7 +3,7 @@ package xyz.cxc6922.functionviewer.core.visitor
 import xyz.cxc6922.functionviewer.core.ast._
 
 // this version cannot check constant infinite
-class ConstantSimplifyVisitor extends Visitor {
+class ConstantSimplifyVisitor extends Visitor[Node] {
   private val cloneVisitor = new CloneVisitor
 
   private def cloneNode(node: Node): Node = {

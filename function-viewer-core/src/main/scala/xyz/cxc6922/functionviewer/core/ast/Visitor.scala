@@ -1,20 +1,20 @@
 package xyz.cxc6922.functionviewer.core.ast
 
-trait Visitor {
+trait Visitor[T] {
 
-  def visit(node: Node): Any
+  def visit(node: Node): T
 
-  def visit(node: ConstantNode): Any
+  def visit(node: ConstantNode): T
 
-  def visit(node: VariableNode): Any
+  def visit(node: VariableNode): T
 
-  def visit(node: NegativeNode): Any
+  def visit(node: NegativeNode): T
 
-  def visit(node: PlusNode): Any
+  def visit(node: PlusNode): T
 
-  def visit(node: MinusNode): Any
+  def visit(node: MinusNode): T
 
-  def visit(node: MultiplyNode): Any
+  def visit(node: MultiplyNode): T
 
-  def visit(node: DivideNode): Any
+  def visit(node: DivideNode): T
 }

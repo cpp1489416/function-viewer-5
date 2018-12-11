@@ -2,9 +2,10 @@ package xyz.cxc6922.functionviewer.core.visitor
 
 import xyz.cxc6922.functionviewer.core.ast._
 
-class CloneVisitor extends Visitor {
-  override def visit(node: Node): Unit = {
+class CloneVisitor extends Visitor[Node] {
+  override def visit(node: Node): Node = {
     // alert error
+    node
   }
 
   override def visit(node: ConstantNode): ConstantNode = {
@@ -21,29 +22,29 @@ class CloneVisitor extends Visitor {
 
   override def visit(node: PlusNode): PlusNode = {
     new PlusNode(
-      node.left.accept(this).asInstanceOf[Node],
-      node.right.accept(this).asInstanceOf[Node]
+      node.left.accept(this),
+      node.right.accept(this)
     )
   }
 
   override def visit(node: MinusNode): MinusNode = {
     new MinusNode(
-      node.left.accept(this).asInstanceOf[Node],
-      node.right.accept(this).asInstanceOf[Node]
+      node.left.accept(this),
+      node.right.accept(this)
     )
   }
 
   override def visit(node: MultiplyNode): MultiplyNode = {
     new MultiplyNode(
-      node.left.accept(this).asInstanceOf[Node],
-      node.right.accept(this).asInstanceOf[Node]
+      node.left.accept(this),
+      node.right.accept(this)
     )
   }
 
   override def visit(node: DivideNode): DivideNode = {
     new DivideNode(
-      node.left.accept(this).asInstanceOf[Node],
-      node.right.accept(this).asInstanceOf[Node]
+      node.left.accept(this),
+      node.right.accept(this)
     )
   }
 }

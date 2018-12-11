@@ -5,18 +5,19 @@ import xyz.cxc6922.functionviewer.core.visitor.{DifferentiateVisitor, StringerVi
 
 object TestDifferentiate {
   def main(args: Array[String]): Unit = {
-    val node = new MultiplyNode(
+    var node: Node = new MultiplyNode(
       new DivideNode(
         new ConstantNode(12),
         new VariableNode("x")
       ),
       new ConstantNode(33)
     )
-    node.left = new  NegativeNode(new ConstantNode(-1));
+    node.asInstanceOf[MultiplyDivideNode].left = new NegativeNode(new ConstantNode(-1))
+    node = gen1()
     println("origin: " + node.accept(new StringerVisitor))
 
-    val differentiateVisitor = new DifferentiateVisitor
-    val difNode : Node = node.accept(differentiateVisitor).asInstanceOf[Node]
+    val differentiateVisitor = new DifferentiateVisitor(Set("x"))
+    val difNode: Node = node.accept(differentiateVisitor).asInstanceOf[Node]
 
     val str = difNode.accept(new StringerVisitor())
     println("differentiated: " + str)

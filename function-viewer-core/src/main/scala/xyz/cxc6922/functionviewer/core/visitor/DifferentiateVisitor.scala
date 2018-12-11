@@ -2,10 +2,10 @@ package xyz.cxc6922.functionviewer.core.visitor
 
 import xyz.cxc6922.functionviewer.core.ast._
 
-class DifferentiateVisitor extends Visitor {
+class DifferentiateVisitor(var toDifferentiate: Set[String] = Set()) extends Visitor[Node] {
   private val cloneVisitor = new CloneVisitor
 
-  private def cloneNode(node: Node) : Node = {
+  private def cloneNode(node: Node): Node = {
     node.accept(cloneVisitor).asInstanceOf[Node]
   }
 
@@ -19,10 +19,14 @@ class DifferentiateVisitor extends Visitor {
   }
 
   override def visit(node: VariableNode): Node = {
-    new ConstantNode(1, ConstantNode.Type.One)
+    if (toDifferentiate.contains(node.name)) {
+      new ConstantNode(1, ConstantNode.Type.One)
+    } else {
+      cloneNode(node)
+    }
   }
 
-  override def visit(node: NegativeNode) : Node = {
+  override def visit(node: NegativeNode): Node = {
     new NegativeNode(differentiateNode(node.child))
   }
 

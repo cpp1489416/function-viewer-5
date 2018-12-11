@@ -14,7 +14,7 @@ trait PlusMinusNode extends BinaryNode {}
 trait MultiplyDivideNode extends BinaryNode {}
 
 class VariableNode(val name: String) extends UnaryNode {
-  override def accept(visitor: Visitor): Any = {
+  override def accept[T](visitor: Visitor[T]): T = {
     visitor.visit(this)
   }
 }
@@ -46,43 +46,43 @@ class ConstantNode(@BeanProperty var value: Double,
 
   }
 
-  override def accept(visitor: Visitor): Any = {
+  override def accept[T](visitor: Visitor[T]): T = {
     visitor.visit(this)
   }
 }
 
 class NegativeNode(@BeanProperty var child: Node) extends UnaryNode {
-  override def accept(visitor: Visitor): Any = {
+  override def accept[T](visitor: Visitor[T]): T = {
     visitor.visit(this)
   }
 }
 
 class CosNode(@BeanProperty var child: Node) extends UnaryNode {
-  override def accept(visitor: Visitor): Any = {
+  override def accept[T](visitor: Visitor[T]): T = {
     visitor.visit(this)
   }
 }
 
 class PlusNode(@BeanProperty var left: Node, @BeanProperty var right: Node) extends PlusMinusNode {
-  override def accept(visitor: Visitor): Any = {
+  override def accept[T](visitor: Visitor[T]): T = {
     visitor.visit(this)
   }
 }
 
 class MinusNode(@BeanProperty var left: Node, @BeanProperty var right: Node) extends PlusMinusNode {
-  override def accept(visitor: Visitor): Any = {
+  override def accept[T](visitor: Visitor[T]): T = {
     visitor.visit(this)
   }
 }
 
 class MultiplyNode(@BeanProperty var left: Node, @BeanProperty var right: Node) extends MultiplyDivideNode {
-  override def accept(visitor: Visitor): Any = {
+  override def accept[T](visitor: Visitor[T]): T = {
     visitor.visit(this)
   }
 }
 
 class DivideNode(@BeanProperty var left: Node, @BeanProperty var right: Node) extends MultiplyDivideNode {
-  override def accept(visitor: Visitor): Any = {
+  override def accept[T](visitor: Visitor[T]): T = {
     visitor.visit(this)
   }
 }
