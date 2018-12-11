@@ -14,7 +14,14 @@ class CalculateVisitor(var environment: Environment) extends Visitor[Double] {
 
   override def visit(node: VariableNode): Double = {
     environment.get(node.name) match {
-      case Some(value) => value.asInstanceOf[Double]
+      case Some(value) =>
+        value match {
+          case value: Double => value
+          case value: Float => value.toDouble
+          case value: Int => value.toDouble
+          case value: Long => value.toDouble
+          case _ => value.toString.toDouble
+        }
       case None => Double.PositiveInfinity // alert(error)
     }
   }
@@ -32,7 +39,7 @@ class CalculateVisitor(var environment: Environment) extends Visitor[Double] {
   }
 
   override def visit(node: MultiplyNode): Double = {
-    node.left.accept(this) - node.right.accept(this)
+    node.left.accept(this) * node.right.accept(this)
   }
 
   override def visit(node: DivideNode): Double = {

@@ -6,6 +6,11 @@ import scala.collection.mutable.Stack
 class Environment {
   var variablesStack: mutable.Stack[mutable.Map[String, Any]] = mutable.Stack(mutable.Map())
 
+  def this(map: mutable.Map[String, Any]) = {
+    this()
+    variablesStack.push(map)
+  }
+
   def get(name: String): Option[Any] = {
     val itr = variablesStack.iterator
     while (itr.hasNext) {
@@ -36,7 +41,6 @@ class Environment {
       variablesStack.pop()
     }
   }
-
 }
 
 object Environment {
