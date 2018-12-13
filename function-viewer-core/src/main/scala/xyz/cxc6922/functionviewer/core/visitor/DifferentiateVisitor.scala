@@ -26,7 +26,7 @@ class DifferentiateVisitor(@BeanProperty var toDifferentiate: Set[String] = Set(
     if (toDifferentiate.contains(node.name)) {
       new ConstantNode(1, ConstantNode.Type.One)
     } else {
-      cloneNode(node)
+      new ConstantNode(ConstantNode.Type.Zero)
     }
   }
 
