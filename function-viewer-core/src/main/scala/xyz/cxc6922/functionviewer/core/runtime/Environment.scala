@@ -42,20 +42,3 @@ class Environment {
     }
   }
 }
-
-object Environment {
-  def main(args: Array[String]): Unit = {
-    val e = new Environment
-    e.put("a", "1")
-    e.put("b", "1")
-    println(e.get("a"))
-    e.pushStack()
-    e.put("a", "2")
-    println(e.get("a"))
-    println(e.get("fdsafsadfsdafdasf"))
-    e.popStack()
-    println(e.get("a"))
-    e.popStack()
-    println(e.get("e"))
-  }
-}

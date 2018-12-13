@@ -2,11 +2,15 @@ package xyz.cxc6922.functionviewer.core.visitor
 
 import xyz.cxc6922.functionviewer.core.ast._
 
-class DifferentiateVisitor(var toDifferentiate: Set[String] = Set()) extends Visitor[Node] {
+import scala.beans.BeanProperty
+
+class DifferentiateVisitor(@BeanProperty var toDifferentiate: Set[String] = Set())
+  extends Visitor[Node] {
+
   private val cloneVisitor = new CloneVisitor
 
   private def cloneNode(node: Node): Node = {
-    node.accept(cloneVisitor).asInstanceOf[Node]
+    node.accept(cloneVisitor)
   }
 
   override def visit(node: Node): Node = {
@@ -77,6 +81,6 @@ class DifferentiateVisitor(var toDifferentiate: Set[String] = Set()) extends Vis
   }
 
   def differentiateNode(node: Node): Node = {
-    node.accept(this).asInstanceOf[Node]
+    node.accept(this)
   }
 }

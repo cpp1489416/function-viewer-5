@@ -3,7 +3,11 @@ package xyz.cxc6922.functionviewer.core.visitor
 import xyz.cxc6922.functionviewer.core.ast._
 import xyz.cxc6922.functionviewer.core.runtime.Environment
 
-class CalculateVisitor(var environment: Environment) extends Visitor[Double] {
+import scala.beans.BeanProperty
+
+class CalculateVisitor(@BeanProperty var environment: Environment = new Environment()
+                      ) extends Visitor[Double] {
+
   override def visit(node: Node): Double = {
     Double.PositiveInfinity
   }
