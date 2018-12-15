@@ -10,12 +10,16 @@ import xyz.cxc6922.functionviewer2.entity.po.User;
 @Controller
 @RequestMapping("user")
 public class UserController {
-    @Autowired
-    private ScalaController scalaController;
+    private final ScalaController scalaController;
 
-    @RequestMapping("getCurrentUserInfo")
+    @Autowired
+    public UserController(ScalaController scalaController) {
+        this.scalaController = scalaController;
+    }
+
+    @RequestMapping("validate")
     @ResponseBody
-    public RestApiResult getCurrentUserInfo() {
+    public RestApiResult validate() {
         scalaController.newTask();
         return new RestApiResult(new User());
     }
