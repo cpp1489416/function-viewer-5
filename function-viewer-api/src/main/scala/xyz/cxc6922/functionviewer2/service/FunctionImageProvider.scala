@@ -5,20 +5,23 @@ import java.awt.image.BufferedImage
 
 import lombok.{Getter, Setter, ToString}
 import org.slf4j.{Logger, LoggerFactory}
+import org.springframework.stereotype.Service
 import xyz.cxc6922.functionviewer.core.newton.SubNewtonObject
 import xyz.cxc6922.functionviewer.core.util.AstUtil
 
 import scala.beans.BeanProperty
 import scala.collection.mutable.ArrayBuffer
 
-class FunctionImageProvider(var source: String = "x * x + y * y - 2500",
-                            var pixelLength: Double = 1.0,
-                            var leftX: Double = -50.0,
-                            var rightX: Double = 50.0,
-                            var upY: Double = 50.0,
-                            var downY: Double = -50.0) {
-
+@Service
+class FunctionImageProvider() {
   private var map: Map = _
+
+  var source: String = "x * x + y * y - 2500"
+  var pixelLength: Double = 1.0
+  var leftX: Double = -50.0
+  var rightX: Double = 50.0
+  var upY: Double = 50.0
+  var downY: Double = -50.0
 
   val newton: SubNewtonObject = new SubNewtonObject()
 
