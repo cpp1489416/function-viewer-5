@@ -17,6 +17,7 @@ class JobCache {
     if (null == imageMap.get(id)) {
       None
     } else {
+      imageMap.get(id).time = System.currentTimeMillis()
       new Some[Object](imageMap.get(id).value)
     }
   }
