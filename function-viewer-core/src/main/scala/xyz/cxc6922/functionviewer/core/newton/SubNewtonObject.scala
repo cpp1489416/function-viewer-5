@@ -6,17 +6,18 @@ import xyz.cxc6922.functionviewer.core.visitor.{CalculateVisitor, ConstantSimpli
 
 import scala.beans.BeanProperty
 
-class SubNewtonObject(@BeanProperty var node: Node = new ConstantNode(0),
-                      @BeanProperty var environment: Environment = new Environment(),
-                      @BeanProperty var toDifferentiate: Set[String] = Set(),
-                      @BeanProperty var times: Int = 50,
-                      @BeanProperty var minimumInfinity: Double = 1e-5,
-                      @BeanProperty var maximumAcceptable: Double = 0.1) {
+class SubNewtonObject(var node: Node = new ConstantNode(0),
+                      var environment: Environment = new Environment(),
+                      var toDifferentiate: Set[String] = Set(),
+                      var times: Int = 50,
+                      var minimumInfinity: Double = 1e-5,
+                      var maximumAcceptable: Double = 0.1) {
+
+  private val differentiateVisitor: DifferentiateVisitor = new DifferentiateVisitor()
+  private val constantSimplifyVisitor: ConstantSimplifyVisitor = new ConstantSimplifyVisitor()
+  private val calculateVisitor: CalculateVisitor = new CalculateVisitor()
 
   var differentiatedNode: Node = _
-  var differentiateVisitor: DifferentiateVisitor = new DifferentiateVisitor()
-  var constantSimplifyVisitor: ConstantSimplifyVisitor = new ConstantSimplifyVisitor()
-  var calculateVisitor: CalculateVisitor = new CalculateVisitor()
 
   updateDifferentiateNode()
 
@@ -47,7 +48,7 @@ class SubNewtonObject(@BeanProperty var node: Node = new ConstantNode(0),
     false
   }
 
-  def newton: Double = {
+  def newton(): Double = {
     var ans: Double = environment.get(toDifferentiate.head).get.asInstanceOf[Double]
     val origin = ans
     for (_ <- 1 to times) {
