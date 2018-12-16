@@ -25,13 +25,21 @@ class JobCache {
     imageMap.put(id, new Info(value))
   }
 
+  def updateToCanExpires(id: String) : Unit = {
+    val info = imageMap.get(id)
+    if (info != null) {
+      info.time = System.currentTimeMillis()
+      info.neverExpires = false
+    }
+  }
+
   @Scheduled(cron = "* 1 * * * *")
   def removeLast(): Unit = {
     val itr = imageMap.entrySet().iterator()
     while (itr.hasNext) {
       val entry = itr.next()
       val info = entry.getValue
-      if (info.expiresMillis + info.time >= System.currentTimeMillis()) {
+      if (!info.neverExpires && info.expiresMillis + info.time >= System.currentTimeMillis()) {
         itr.remove()
       }
     }
@@ -40,6 +48,7 @@ class JobCache {
   class Info(var value: Object = null) {
     var time: Double = System.currentTimeMillis()
     var expiresMillis: Double = 1000 * 60 * 60
+    var neverExpires : Boolean = true
   }
 
 

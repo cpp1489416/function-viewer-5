@@ -34,6 +34,7 @@ class FunctionService {
       override def run(): Unit = {
         imageProvider.generateMap()
         imageProvider.generateImage()
+        jobCache.updateToCanExpires(id)
       }
     })
 
