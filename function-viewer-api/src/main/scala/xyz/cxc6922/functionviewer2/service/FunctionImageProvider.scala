@@ -2,6 +2,7 @@ package xyz.cxc6922.functionviewer2.service
 
 import java.awt.{Color, Graphics}
 import java.awt.image.BufferedImage
+import java.util.UUID
 
 import lombok.{Getter, Setter, ToString}
 import org.slf4j.{Logger, LoggerFactory}
@@ -13,17 +14,20 @@ import scala.beans.BeanProperty
 import scala.collection.mutable.ArrayBuffer
 
 @Service
+// this class can only be used once
 class FunctionImageProvider() {
-  private var map: Map = _
+  private var map: DotMap = _
 
+  val newton: SubNewtonObject = new SubNewtonObject()
   var source: String = "x * x + y * y - 2500"
   var pixelLength: Double = 1.0
   var leftX: Double = -50.0
   var rightX: Double = 50.0
   var upY: Double = 50.0
   var downY: Double = -50.0
-
-  val newton: SubNewtonObject = new SubNewtonObject()
+  var mapGeneratingProgress: Double = 0.0
+  var finished: Boolean = false
+  var image: BufferedImage = _
 
   private def arrayLength: (Int, Int) = {
     val xLength: Int = ((rightX - leftX) / pixelLength).toInt + 1
@@ -31,8 +35,10 @@ class FunctionImageProvider() {
     (xLength, yLength)
   }
 
-  def generateImage(): BufferedImage = {
-    generateMap()
+  def generateImage(): Unit = {
+    if (map == null) {
+      generateMap()
+    }
     map.reverseY()
     val image: BufferedImage = new BufferedImage(arrayLength._1, arrayLength._2, BufferedImage.TYPE_INT_RGB)
     val graphics: Graphics = image.getGraphics
@@ -43,12 +49,13 @@ class FunctionImageProvider() {
       graphics.fillRect(x, y, 1, 1)
     }
     map.reverseY()
-    image
+    finished = true
+    this.image = image
   }
 
   def generateMap(): Unit = {
     // init map
-    map = new Map(arrayLength._1, arrayLength._2)
+    map = new DotMap(arrayLength._1, arrayLength._2)
 
     // init newton
     newton.node = AstUtil.genNode(source)
@@ -64,10 +71,16 @@ class FunctionImageProvider() {
       if (math.abs(newton.newton - xVal) < 0.5) {
         map(x, y) = true
       }
+
+      // insert progress for query
+      mapGeneratingProgress = (x * arrayLength._2 + y).toDouble / (arrayLength._1 * arrayLength._2)
+      println(mapGeneratingProgress)
     }
+
+    mapGeneratingProgress = 1.0
   }
 
-  class Map(val xLength: Int, val yLength: Int) {
+  class DotMap(val xLength: Int, val yLength: Int) {
     private val map: Array[Array[Boolean]] = new Array[Array[Boolean]](xLength)
 
     for (row <- 0 until xLength) {
