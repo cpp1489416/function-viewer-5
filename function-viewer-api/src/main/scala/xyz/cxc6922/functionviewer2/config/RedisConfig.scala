@@ -3,13 +3,14 @@ package xyz.cxc6922.functionviewer2.config
 import java.io.Serializable
 import java.util.concurrent.TimeUnit
 
+import com.fasterxml.jackson.databind.{DeserializationFeature, ObjectMapper}
 import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.{Bean, Configuration}
 import org.springframework.data.redis.connection.RedisConnectionFactory
 import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.data.redis.serializer.{GenericJackson2JsonRedisSerializer, StringRedisSerializer}
 import org.springframework.stereotype.Component
-import xyz.cxc6922.functionviewer2.config.shiro.HeaderSessionManager
+import xyz.cxc6922.functionviewer2.config.shiro.{HeaderSessionManager, NoExceptionJackson2JsonRedisSerializer, Object2DataRedisSerializer}
 
 import scala.beans.BeanProperty
 
@@ -23,10 +24,10 @@ class RedisConfig {
     val template = new RedisTemplate[String, AnyRef]
     template.setConnectionFactory(factory)
     val keySerializer = new StringRedisSerializer
-    val valueSerializer = new GenericJackson2JsonRedisSerializer
-    template.setDefaultSerializer(new GenericJackson2JsonRedisSerializer)
-    template.setKeySerializer(new StringRedisSerializer)
-    template.setHashKeySerializer(new StringRedisSerializer)
+    val valueSerializer = new  Object2DataRedisSerializer
+    template.setDefaultSerializer(valueSerializer)
+    template.setKeySerializer(keySerializer)
+    template.setHashKeySerializer(keySerializer)
     template.setHashValueSerializer(valueSerializer)
     template.setHashValueSerializer(valueSerializer)
     template.afterPropertiesSet()
