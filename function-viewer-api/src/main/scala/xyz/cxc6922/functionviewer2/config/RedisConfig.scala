@@ -24,7 +24,7 @@ class RedisConfig {
     val template = new RedisTemplate[String, AnyRef]
     template.setConnectionFactory(factory)
     val keySerializer = new StringRedisSerializer
-    val valueSerializer = new  Object2DataRedisSerializer
+    val valueSerializer = new Object2DataRedisSerializer
     template.setDefaultSerializer(valueSerializer)
     template.setKeySerializer(keySerializer)
     template.setHashKeySerializer(keySerializer)

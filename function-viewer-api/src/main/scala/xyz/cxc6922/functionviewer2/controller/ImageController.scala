@@ -77,7 +77,7 @@ class ImageController {
   def queryImage(@RequestParam(value = "id") id: String,
                  request: HttpServletRequest,
                  response: HttpServletResponse): Unit = {
-    def error(msg:String) : Unit = {
+    def error(msg: String): Unit = {
       response.setStatus(500)
       response.setContentType("application/json")
       val objectMapper = new ObjectMapper()

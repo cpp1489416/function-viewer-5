@@ -13,7 +13,7 @@ import xyz.cxc6922.functionviewer2.config.shiro.{HeaderSessionManager, RedisCach
 @Configuration
 class ShiroConfig {
   @Autowired
-  val redisCacheManager : RedisCacheManager = null
+  val redisCacheManager: RedisCacheManager = null
 
   @Autowired
   val redisSessionDao: RedisSessionDao = null
@@ -54,7 +54,7 @@ class ShiroConfig {
   }
 
   @Bean
-  def authorizationAttributeSourceAdvisor(securityManager: SecurityManager) : AuthorizationAttributeSourceAdvisor = {
+  def authorizationAttributeSourceAdvisor(securityManager: SecurityManager): AuthorizationAttributeSourceAdvisor = {
     val authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor()
     authorizationAttributeSourceAdvisor.setSecurityManager(securityManager)
     authorizationAttributeSourceAdvisor

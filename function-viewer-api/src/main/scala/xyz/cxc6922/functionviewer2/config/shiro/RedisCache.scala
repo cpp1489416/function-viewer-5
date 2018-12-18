@@ -51,7 +51,7 @@ class RedisCache[K, V](val name: String, val redisTemplate: RedisTemplate[String
     set
   }
 
-  override def values(): util.Collection[V] =  {
+  override def values(): util.Collection[V] = {
     val keys = stringKeys()
     val values = new util.LinkedList[V]()
     for (k <- keys) {

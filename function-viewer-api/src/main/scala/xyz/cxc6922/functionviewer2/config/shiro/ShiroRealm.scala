@@ -6,7 +6,7 @@ import org.apache.shiro.realm.AuthorizingRealm
 import org.apache.shiro.subject.PrincipalCollection
 import xyz.cxc6922.functionviewer2.model.po.Role
 
-class ShiroRealm extends  AuthorizingRealm {
+class ShiroRealm extends AuthorizingRealm {
   // 身份验证
   override def doGetAuthorizationInfo(principalCollection: PrincipalCollection): AuthorizationInfo = {
     val info = new SimpleAuthorizationInfo()
