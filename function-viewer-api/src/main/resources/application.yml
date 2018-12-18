@@ -1,4 +1,12 @@
 server:
   servlet:
     context-path: /functionviewer2
+    session:
+      cookie:
+        name: 333
   port: 18080
+
+spring:
+  aop:
+    proxy-target-class: true
+
