@@ -17,7 +17,12 @@ class ShiroConfig {
 
   @Bean
   def shiroRealm: ShiroRealm = {
-    new ShiroRealm
+    val realm = new ShiroRealm
+    realm.setCachingEnabled(false)
+    realm.setAuthenticationCachingEnabled(false)
+    realm.setAuthenticationCachingEnabled(false)
+    realm.setCacheManager(redisCacheManager)
+    realm
   }
 
   @Bean
@@ -26,7 +31,6 @@ class ShiroConfig {
     sessionManager.setGlobalSessionTimeout(15000) // 会话过期时间
     sessionManager.setSessionValidationInterval(1000) // 每秒检测是否过期
     sessionManager.setSessionValidationSchedulerEnabled(true) // 开启会话过期扫描
-    sessionManager.setCacheManager(redisCacheManager)
     sessionManager
   }
 
@@ -35,7 +39,6 @@ class ShiroConfig {
     val securityManager = new DefaultWebSecurityManager()
     securityManager.setRealm(shiroRealm)
     securityManager.setSessionManager(sessionManager)
-    securityManager.setCacheManager(redisCacheManager)
     securityManager
   }
 
