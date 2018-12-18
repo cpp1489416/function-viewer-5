@@ -9,4 +9,12 @@ server:
 spring:
   aop:
     proxy-target-class: true
-
+  redis:
+    host: myserver1
+    port: 6379
+    database: 0
+    jedis:
+      pool:
+        max-active: 4
+        max-wait: 1000ms
+        max-idle: 4

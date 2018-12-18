@@ -13,7 +13,6 @@ import java.util.function.Function;
 
 @SpringBootApplication(exclude = {
         DataSourceAutoConfiguration.class,
-        RedisAutoConfiguration.class,
         JdbcTemplateAutoConfiguration.class,
         SessionAutoConfiguration.class})
 public class Functionviewer2Application  extends SpringBootServletInitializer {
