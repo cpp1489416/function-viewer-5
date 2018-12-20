@@ -20,8 +20,10 @@ class NoExceptionJackson2JsonRedisSerializer(val mapper: ObjectMapper)
     mapper.registerModule(new SimpleModule().addSerializer(new NullValueSerializer(null)))
     mapper.enableDefaultTyping(DefaultTyping.NON_FINAL, As.PROPERTY)
     mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false) // this is important
-    mapper.configure(MapperFeature.REQUIRE_SETTERS_FOR_GETTERS, true)
+    // mapper.configure(SerializationFeature)
+   // mapper.configure(MapperFeature.REQUIRE_SETTERS_FOR_GETTERS, true)
     mapper.configure(MapperFeature.USE_GETTERS_AS_SETTERS, false)
+
   }
 
   @SerialVersionUID(1999052150548658808L)

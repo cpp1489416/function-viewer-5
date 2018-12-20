@@ -32,9 +32,9 @@ class ShiroConfig {
   def sessionManager: SessionManager = {
     val sessionManager = new HeaderSessionManager()
     sessionManager.setSessionDAO(redisSessionDao) // 用redis保存session
-    sessionManager.setGlobalSessionTimeout(15000) // 会话过期时间
-    sessionManager.setSessionValidationInterval(1000) // 每秒检测是否过期
-    sessionManager.setSessionValidationSchedulerEnabled(true) // 开启会话过期扫描
+    // sessionManager.setGlobalSessionTimeout(15000) // 会话过期时间
+    // sessionManager.setSessionValidationInterval(1000) // 每秒检测是否过期
+    // sessionManager.setSessionValidationSchedulerEnabled(true) // 开启会话过期扫描
     sessionManager
   }
 

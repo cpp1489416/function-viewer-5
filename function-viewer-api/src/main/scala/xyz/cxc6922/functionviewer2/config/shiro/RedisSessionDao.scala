@@ -30,7 +30,9 @@ class RedisSessionDao extends AbstractSessionDAO {
 
   override def doReadSession(sessionId: io.Serializable): Session = {
     val session = redisTemplate.opsForValue().get(SESSION_PREFIX + sessionId.toString).asInstanceOf[Session]
-    redisTemplate.opsForValue().set(SESSION_PREFIX + sessionId.toString, session, SESSION_EXPIRES_MINUTES, TimeUnit.MINUTES)
+    if (session != null) {
+      redisTemplate.opsForValue().set(SESSION_PREFIX + sessionId.toString, session, SESSION_EXPIRES_MINUTES, TimeUnit.MINUTES)
+    }
     session
   }
 
