@@ -17,6 +17,7 @@ function-viewer-core/target/
 *.iws
 *.iml
 *.ipr
+.vscode/
 
 ### NetBeans ###
 /nbproject/private/
