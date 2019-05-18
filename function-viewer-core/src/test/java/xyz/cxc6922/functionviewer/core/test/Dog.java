@@ -1,12 +1,15 @@
 package xyz.cxc6922.functionviewer.core.test;
 
+/*
 import com.fasterxml.jackson.databind.ObjectMapper;
 import xyz.cxc6922.functionviewer.core.ast.ConstantNode;
 import xyz.cxc6922.functionviewer.core.ast.DivideNode;
 import xyz.cxc6922.functionviewer.core.ast.Node;
 import xyz.cxc6922.functionviewer.core.visitor.StringerVisitor;
+*/
 
 public class Dog {
+    /*
     private String name = "ddd";
     private static ObjectMapper objectMapper = new ObjectMapper();
 
@@ -28,4 +31,5 @@ public class Dog {
         System.out.println(a.accept(new StringerVisitor()));
         System.out.println(objectMapper.writeValueAsString(a));
     }
+    */
 }

@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Functionviewer2Application<function-viewer-api>",
+            "request": "launch",
+            "mainClass": "xyz.cxc6922.functionviewer2.Functionviewer2Application",
+            "projectName": "function-viewer-api"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Dog<function-viewer-core>",
+            "request": "launch",
+            "mainClass": "xyz.cxc6922.functionviewer.core.test.Dog",
+            "projectName": "function-viewer-core"
+        }
+    ]
+}

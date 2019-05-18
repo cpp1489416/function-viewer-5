@@ -11,7 +11,7 @@
     <groupId>xyz.cxc6922</groupId>
     <artifactId>function-viewer-api</artifactId>
     <version>2.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>function-viewer-api</name>
     <description>Demo project for Spring Boot</description>
 

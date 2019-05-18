@@ -2,7 +2,6 @@ package xyz.cxc6922.functionviewer.core.tes.analyzer
 
 import java.util.Scanner
 
-import com.sun.javafx.css.CssError.StringParsingError
 import xyz.cxc6922.functionviewer.core.ast.Node
 import xyz.cxc6922.functionviewer.core.parsing.{FunctionLexer, LL1FunctionAnalyzer}
 import xyz.cxc6922.functionviewer.core.visitor.{ConstantSimplifyVisitor, DifferentiateVisitor, StringerVisitor}
